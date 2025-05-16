@@ -6,6 +6,13 @@ function renderCartContents() {
   if (cartItems.length > 0) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
+    document.querySelector(".hide").style.display = "block";
+    let total = 0;
+    for (const item of cartItems) {
+      total += item.FinalPrice;
+    }
+    document.querySelector(".cart-total").innerHTML =
+      `Total: ${total.toFixed(2)}`;
   } else {
     document.querySelector(".product-list").innerHTML =
       "There are no items in your cart.";
