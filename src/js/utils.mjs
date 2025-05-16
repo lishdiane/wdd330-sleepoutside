@@ -21,3 +21,19 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param); // Return the requested parameter value
+}
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  if (clear) {
+    parentElement.innerHTML = ""; // Clears out existing content if needed
+  }
+
+  const htmlStrings = list.map(templateFn).join(""); // Convert list items into HTML
+  parentElement.insertAdjacentHTML(position, htmlStrings); // Insert into the DOM at specified position
+}
+
