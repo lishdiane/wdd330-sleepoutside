@@ -13,7 +13,7 @@ function productCardTemplate(product) {
       <p class="product-card__price">$${product.FinalPrice.toFixed(2)}</p>
       ${discount !== null
           ? `<div class="discount-container">
-                <img src="./public/images/discount-star.png" alt="Discount Star" class="discount-image">
+                <img src="./images/discount-star.png" alt="Discount Star" class="discount-image">
                 <span class="discount-text">${discount}% OFF</span>
               </div>`: ""
     }
