@@ -94,6 +94,29 @@ p {
   margin-top: -1.7em;
 }
 
+.discount-container {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  /* Adjust size as needed */
+}
+
+.discount-image {
+  width: 100%;
+  height: auto;
+}
+
+.discount-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
