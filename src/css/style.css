@@ -283,6 +283,25 @@ button {
   display: none;
 }
 
+.product-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  list-style: none;
+  text-align: center;
+}
+
+.product-category img {
+  width: 100px;
+  height: 100px;
+}
+
+.product-category a {
+  text-decoration: none;
+  color: #303030;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

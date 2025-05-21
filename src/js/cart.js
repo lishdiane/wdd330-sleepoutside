@@ -29,9 +29,12 @@ function renderCartContents() {
 
   if (cartItems.length > 0) {
     // Filter invalid items
-    const validItems = cartItems.filter(item => item && (item.Name || item.Image));
+    const validItems = cartItems.filter(
+      (item) => item && (item.Name || item.Image),
+    );
     if (validItems.length === 0) {
-      document.querySelector(".product-list").innerHTML = "There are no valid items in your cart.";
+      document.querySelector(".product-list").innerHTML =
+        "There are no valid items in your cart.";
       document.querySelector(".cart-footer").style.display = "none";
       return;
     }
@@ -45,9 +48,11 @@ function renderCartContents() {
       const quantity = item.quantity || 1;
       total += (Number(item.FinalPrice) || 0) * quantity;
     }
-    document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+    document.querySelector(".cart-total").textContent =
+      `Total: $${total.toFixed(2)}`;
   } else {
-    document.querySelector(".product-list").innerHTML = "There are no items in your cart.";
+    document.querySelector(".product-list").innerHTML =
+      "There are no items in your cart.";
     document.querySelector(".cart-footer").style.display = "none";
   }
 }

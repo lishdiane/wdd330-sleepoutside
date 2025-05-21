@@ -9,8 +9,8 @@ const productId = getParam("product");
 console.log("Product ID:", productId);
 
 // Set up product details and initialize UI
-const product = new ProductDetails(productId, dataSource);
-product.init();
+const productDetails = new ProductDetails(productId, dataSource);
+productDetails.init();
 
 // Set the productId as a data attribute on the Add to Cart button
 const addToCartBtn = document.getElementById("addToCart");
@@ -28,20 +28,20 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const id = e.target.dataset.id;
   console.log("Adding product with ID:", id);
-  
+
   if (!id) {
     alert("No product ID found!");
     return;
   }
-  
+
   const product = await dataSource.findProductById(id);
   console.log("Found product:", product);
-  
+
   if (!product) {
     alert("Product not found!");
     return;
   }
-  
+
   addProductToCart(product);
 }
 
@@ -49,20 +49,19 @@ async function addToCartHandler(e) {
 addToCartBtn.addEventListener("click", addToCartHandler);
 
 function updateCartCount() {
-    const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
-    const count = cartItems.length;
-  
-    const badge = document.querySelector(".cart-count-badge");
-    if (!badge) return;
-  
-    if (count > 0) {
-      badge.textContent = count;
-      badge.style.display = "inline-block";
-    } else {
-      badge.style.display = "none";
-    }
+  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const count = cartItems.length;
+
+  const badge = document.querySelector(".cart-count-badge");
+  if (!badge) return;
+
+  if (count > 0) {
+    badge.textContent = count;
+    badge.style.display = "inline-block";
+  } else {
+    badge.style.display = "none";
   }
-  
-  // Call it once on page load:
-  updateCartCount();
-  
+}
+
+// Call it once on page load:
+updateCartCount();
