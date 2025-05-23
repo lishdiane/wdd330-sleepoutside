@@ -5,12 +5,13 @@ function productCardTemplate(product) {
         ((product.SuggestedRetailPrice - product.FinalPrice) /
         product.SuggestedRetailPrice) * 100) : null;
         console.log("Generated Product URL:", `/product_pages/product.html?product=${product.Id}`);
+        console.log("Full Product Data:", product);
+
 
 
   return `<li class="product-card">
     <a href="/product_pages/product.html?product=${product.Id}">
-
-      <img src="${product.Image}" alt="Image of ${product.Name}">
+      <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.NameWithoutBrand}">
       <h2 class="card__brand">${product.Brand.Name}</h2>
       <h3 class="card__name">${product.Name}</h3>
       <p class="product-card__price">$${product.FinalPrice.toFixed(2)}</p>

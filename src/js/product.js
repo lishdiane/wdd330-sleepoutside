@@ -8,6 +8,10 @@ const productId = getParam("product");
 
 console.log("Extracted Product ID:", productId);
 
+const productData = await dataSource.findProductById(productId); // Ensure fetch by ID
+
+console.log("Fetched Product Data:", productData); // Debugging
+
 // Set up product details and initialize UI
 const product = new ProductDetails(productId, dataSource);
 product.init();

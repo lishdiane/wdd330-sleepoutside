@@ -7,15 +7,16 @@ export default class ProductDetails {
         this.dataSource = dataSource;
     };
 
-    async init() {
-      this.product = await this.dataSource.findProductById(this.productId);
-      console.log("Fetched Product Data:", this.product);
+  async init() {
+    console.log("Initializing Product Details for ID:", this.productId);
+    this.product = await this.dataSource.findProductById(this.productId);
+    console.log("Fetched Product Data:", this.product);
 
-      if (!this.product) {
-        console.error("Product not found!");
-        return;
-      }
-      
+    if (!this.product) {
+      console.error("Product not found!");
+      return;
+    }
+
       this.renderProductDetails();
       document
           .getElementById('addToCart')
@@ -38,8 +39,9 @@ function productDetailsTemplate(product) {
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
   const productImage = document.getElementById("productImage");
-  productImage.src = product.Image;
+  productImage.src = product.Images.PrimaryLarge;
   productImage.alt = product.NameWithoutBrand;
+
 
   document.getElementById("productPrice").textContent = product.FinalPrice;
   document.getElementById("productColor").textContent =
