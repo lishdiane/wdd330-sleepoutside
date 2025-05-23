@@ -3,10 +3,13 @@ import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
   const discount = product.SuggestedRetailPrice > product.FinalPrice ? Math.round(
         ((product.SuggestedRetailPrice - product.FinalPrice) /
-          product.SuggestedRetailPrice) * 100): null;
+        product.SuggestedRetailPrice) * 100) : null;
+        console.log("Generated Product URL:", `/product_pages/product.html?product=${product.Id}`);
+
 
   return `<li class="product-card">
-    <a href="product_pages/?product=${product.Id}">
+    <a href="/product_pages/product.html?product=${product.Id}">
+
       <img src="${product.Image}" alt="Image of ${product.Name}">
       <h2 class="card__brand">${product.Brand.Name}</h2>
       <h3 class="card__name">${product.Name}</h3>
@@ -30,7 +33,7 @@ export default class ProductList {
     }
 
     async init() {
-        const list = await this.dataSource.getData();
+      const list = await this.dataSource.getData(this.category);
         this.renderList(list);
     }
  
