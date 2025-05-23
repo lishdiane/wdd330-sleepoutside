@@ -1,6 +1,8 @@
 import { getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
 
 // Initialize data source and get productId from URL
 const dataSource = new ProductData("tents");
@@ -9,8 +11,8 @@ const productId = getParam("product");
 console.log("Product ID:", productId);
 
 // Set up product details and initialize UI
-const product = new ProductDetails(productId, dataSource);
-product.init();
+const productDetails = new ProductDetails(productId, dataSource);
+productDetails.init();
 
 // Set the productId as a data attribute on the Add to Cart button
 const addToCartBtn = document.getElementById("addToCart");
@@ -64,5 +66,6 @@ function updateCartCount() {
   }
   
   // Call it once on page load:
-  updateCartCount();
+updateCartCount();
+loadHeaderFooter(); 
   
