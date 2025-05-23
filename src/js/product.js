@@ -23,7 +23,7 @@ console.log("Button data-id:", addToCartBtn.dataset.id);
 function addProductToCart(product) {
   // Example implementation - you should replace this with your real cart logic
   console.log("Product added to cart:", product);
-  alert(`Added "${product.name}" to cart!`);
+  alert(`Added "${product.Name}" to cart!`);
 }
 
 // Handler for Add to Cart button click
