@@ -8,7 +8,7 @@ export default class ShoppingCart {
 }
 
 function cartItemTemplate(item) {
-  const image = item.Image || "/images/placeholder.png"; // fallback image
+  const image = item.Image || item.Images.PrimarySmall || "/images/placeholder.png"; // fallback image
   const name = item.Name || "Unnamed product";
   const colorName =
     item.Colors && item.Colors.length > 0 && item.Colors[0].ColorName
