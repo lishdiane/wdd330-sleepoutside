@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
   const image = item.Image || "/images/placeholder.png"; // fallback image
@@ -19,7 +19,13 @@ function cartItemTemplate(item) {
       <h2 class="card__name">${name}</h2>
     </a>
     <p class="cart-card__color">${colorName}</p>
-    <p class="cart-card__quantity">qty: ${quantity}</p>
+
+    <div id="quantity">
+      <button id="buttonSubtract">-</button>
+      <p class="cart-card__quantity">qty: ${quantity}</p>
+      <button id="buttonAdd">+</button>
+    </div>
+
     <p class="cart-card__price">$${totalPrice}</p>
   </li>`;
 }
@@ -40,8 +46,36 @@ function renderCartContents() {
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     document.querySelector(".cart-footer").style.display = "block";
 
+    const buttonSubtract = document.querySelector("#buttonSubtract");
+    const buttonAdd = document.querySelector("#buttonAdd");
+    const quantityText = document.querySelector(".cart-card__quantity");
+
+    
     let total = 0;
     for (const item of validItems) {
+
+      buttonSubtract.addEventListener("click", () => {
+       // if (item.quantity == 0) {
+         // item.quantity = 0;
+         // quantityText.textContent = item.quantity;
+     // }else 
+        if (item.quantity == 1) {
+          const index = cartItems.indexOf(item);
+          cartItems.splice(index, 1);
+        } else {
+          item.quantity -= 1;
+          quantityText.innerHTML = `qty: ${item.quantity}`;;
+        };
+        setLocalStorage("so-cart", cartItems);
+      })
+
+      buttonAdd.addEventListener("click", () => {
+        item.quantity += 1;
+        quantityText.innerHTML = `qty: ${item.quantity}`;
+        setLocalStorage("so-cart", cartItems);
+  
+      })
+
       const quantity = item.quantity || 1;
       total += (Number(item.FinalPrice) || 0) * quantity;
     }
@@ -49,6 +83,8 @@ function renderCartContents() {
   } else {
     document.querySelector(".product-list").innerHTML = "There are no items in your cart.";
     document.querySelector(".cart-footer").style.display = "none";
+
+
   }
 }
 
