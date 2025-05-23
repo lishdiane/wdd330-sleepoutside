@@ -16,9 +16,27 @@ export default class ProductDetails {
     };
 
     addProductToCart() {
-        const cartItems = getLocalStorage("so-cart") || [];
+      const cartItems = getLocalStorage("so-cart") || [];
+      if (isIn(this.product, cartItems)) {
+        console.log("already in")
+        
+      } else {
+        this.product.quantity = 1;
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
+      }
+
+      function isIn(product, cartItems) {
+        for (const item of cartItems) {
+          console.log(item);
+          console.log(product);
+          if (item.Id === product.Id) {
+            item.quantity += 1;
+            setLocalStorage("so-cart", cartItems);
+            return true;
+          }
+        }
+      }
     };
 
     renderProductDetails() {
