@@ -1,6 +1,8 @@
 import { getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
+
 
 // Initialize data source and get productId from URL
 const dataSource = new ProductData("tents");
@@ -61,8 +63,8 @@ function updateCartCount() {
   } else {
     badge.style.display = "none";
   }
-}
-
-// Call it once on page load:
+  
+  // Call it once on page load:
 updateCartCount();
 loadHeaderFooter(); 
+
