@@ -1,3 +1,5 @@
+import { loadHeaderFooter } from "./utils.mjs";
+
 // Retrieve cart contents from localStorage
 function getCartContents() {
   const cart = localStorage.getItem("so-cart");
@@ -34,3 +36,4 @@ function updateCartCount() {
 
 // Run on page load
 updateCartCount();
+loadHeaderFooter(); 

@@ -65,3 +65,4 @@ function updateCartCount() {
 
 // Call it once on page load:
 updateCartCount();
+loadHeaderFooter(); 
