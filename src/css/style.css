@@ -199,6 +199,7 @@ button {
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: center;
+  gap: 0.5rem;
 }
 
 .product-list a {
@@ -206,6 +207,24 @@ button {
   color: var(--dark-grey);
 }
 
+#product-categories {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#product-categories a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+#product-categories a:hover {
+  color: brown;
+}
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -244,15 +263,23 @@ button {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
+  gap: 0.5rem;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
+  width: 637px;
+  height: 157px;
 }
 
 .cart-card__image {
   grid-row: 1/3;
   grid-column: 1;
+}
+
+.cart-card img {
+  min-height: 100px;
+  width: auto;
 }
 
 .cart-card p {
