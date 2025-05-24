@@ -1,16 +1,17 @@
 import { getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 // Initialize data source and get productId from URL
-const dataSource = new ProductData();
+const category = getParam("category") || "tents"; // default category is set
+const dataSource = new ProductData(category);
+
 const productId = getParam("product");
 
 console.log("Extracted Product ID:", productId);
 
-const productData = await dataSource.findProductById(productId); // Ensure fetch by ID
 
-console.log("Fetched Product Data:", productData); // Debugging
 
 // Set up product details and initialize UI
 const product = new ProductDetails(productId, dataSource);
@@ -25,7 +26,7 @@ console.log("Button data-id:", addToCartBtn.dataset.id);
 function addProductToCart(product) {
   // Example implementation - you should replace this with your real cart logic
   console.log("Product added to cart:", product);
-  alert(`Added "${product.name}" to cart!`);
+  alert(`Added "${product.Name}" to cart!`);
 }
 
 // Handler for Add to Cart button click
@@ -67,6 +68,7 @@ function updateCartCount() {
     }
   }
   
-  // Call it once on page load:
-  updateCartCount();
+// Call it once on page load:
+loadHeaderFooter();
+updateCartCount();
   

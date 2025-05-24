@@ -9,6 +9,10 @@ function convertToJson(res) {
 }
 
 export default class ProductData {
+  constructor() {
+   
+  }
+
   async getData(category) {
     try {
       const response = await fetch(`${baseURL}products/search/${category}`);
@@ -21,15 +25,19 @@ export default class ProductData {
     }
   }
 
+
+
   async findProductById(id) {
     try {
-      const response = await fetch(`${baseURL}product/${id}`); // Query API directly
+      const response = await fetch(`${baseURL}product/${id}`);
       if (!response.ok) throw new Error("Failed to fetch product");
       const data = await convertToJson(response);
-      return data;
+      console.log("Fetched product data:", data.Result); // Debugging
+      return data.Result;
     } catch (error) {
       console.error("Error fetching product:", error);
       return null;
     }
   }
-}  
+  
+}

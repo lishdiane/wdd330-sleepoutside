@@ -12,10 +12,10 @@ export default class ProductDetails {
     this.product = await this.dataSource.findProductById(this.productId);
     console.log("Fetched Product Data:", this.product);
 
-    if (!this.product) {
-      console.error("Product not found!");
-      return;
-    }
+    // if (!this.product) {
+    //   console.error("Product not found!");
+    //   return;
+    // }
 
       this.renderProductDetails();
       document
@@ -24,9 +24,10 @@ export default class ProductDetails {
     };
 
     addProductToCart() {
-        const cartItems = getLocalStorage("so-cart") || [];
-        cartItems.push(this.product);
-        setLocalStorage("so-cart", cartItems);
+      const cartItems = getLocalStorage("so-cart") || [];
+      this.product.quantity = 1;
+      cartItems.push(this.product);
+      setLocalStorage("so-cart", cartItems);
     };
 
     renderProductDetails() {
