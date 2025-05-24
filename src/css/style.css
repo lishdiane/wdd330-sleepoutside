@@ -147,6 +147,8 @@ p {
   text-align: center;
 }
 
+
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -311,6 +313,40 @@ button {
 
 .hide {
   display: none;
+}
+
+.product-image-container {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.discount-container-details {
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 160px;
+  height: auto;
+}
+
+.discount-image-details {
+  width: 150px !important;
+  height: auto;
+  position: relative;
+}
+
+.discount-text-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 26px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 4px 4px;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 500px) {

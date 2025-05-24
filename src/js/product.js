@@ -9,9 +9,6 @@ const dataSource = new ProductData(category);
 
 const productId = getParam("product");
 
-console.log("Extracted Product ID:", productId);
-
-
 
 // Set up product details and initialize UI
 const product = new ProductDetails(productId, dataSource);
@@ -20,19 +17,17 @@ product.init();
 // Set the productId as a data attribute on the Add to Cart button
 const addToCartBtn = document.getElementById("addToCart");
 addToCartBtn.setAttribute("data-id", productId);
-console.log("Button data-id:", addToCartBtn.dataset.id);
+
 
 // Function to add product to cart (implement this function based on your cart logic)
 function addProductToCart(product) {
   // Example implementation - you should replace this with your real cart logic
-  console.log("Product added to cart:", product);
   alert(`Added "${product.Name}" to cart!`);
 }
 
 // Handler for Add to Cart button click
 async function addToCartHandler(e) {
   const id = e.target.dataset.id;
-  console.log("Adding product with ID:", id);
   
   if (!id) {
     alert("No product ID found!");
@@ -40,7 +35,6 @@ async function addToCartHandler(e) {
   }
   
   const product = await dataSource.findProductById(id);
-  console.log("Found product:", product);
   
   if (!product) {
     alert("Product not found!");

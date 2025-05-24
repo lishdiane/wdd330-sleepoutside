@@ -13,7 +13,6 @@ export default class ShoppingCart {
 
     renderCartContents(template) {
         const cartItems = getLocalStorage("so-cart") || [];
-        console.log("Cart items loaded from localStorage:", cartItems);
 
         if (cartItems.length > 0) {// Filter invalid items
             const validItems = cartItems.filter(item => item && (item.Name || item.Image));
@@ -23,11 +22,8 @@ export default class ShoppingCart {
                 document.querySelector(".cart-footer").style.display = "none";
                 return;
             }
-            console.log("Attempting to render cart items with template:", template);
-            console.log("Cart items being passed to template:", validItems);
             validItems.forEach(item => {
-                console.log("Checking cart item image URL:", item.Images?.PrimaryLarge || "No image found");
-                console.log("Checking cart item color:", item.Colors?.[0]?.ColorName || "No color found");
+                
             });
             
 

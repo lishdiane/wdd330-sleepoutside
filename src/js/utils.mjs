@@ -58,8 +58,6 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 
 
 export function renderWithTemplate(template, parentElement, dataList) {
-  console.log("Checking parentElement:", parentElement);
-  console.log("Data received in renderWithTemplate:", dataList);
 
   if (!parentElement) {
     console.error("Error: parentElement is null. The template cannot be applied.");

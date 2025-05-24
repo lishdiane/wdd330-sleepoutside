@@ -4,10 +4,6 @@ function productCardTemplate(product) {
   const discount = product.SuggestedRetailPrice > product.FinalPrice ? Math.round(
         ((product.SuggestedRetailPrice - product.FinalPrice) /
         product.SuggestedRetailPrice) * 100) : null;
-        console.log("Generated Product URL:", `/product_pages/product.html?product=${product.Id}`);
-        console.log("Full Product Data:", product);
-
-
 
   return `<li class="product-card">
     <a href="/product_pages/?product=${product.Id}">
