@@ -20,7 +20,7 @@ function updateCartCount() {
   }
 }
 
-loadHeaderFooter(); 
+loadHeaderFooter();
 updateCartCount();
 
 export { updateCartCount };
