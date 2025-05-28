@@ -45,27 +45,12 @@ async function addToCartHandler(e) {
   }
 
   addProductToCart(product);
+  loadHeaderFooter()
 }
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
-
-function updateCartCount() {
-  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
-  const count = cartItems.length;
-
-  const badge = document.querySelector(".cart-count-badge");
-  if (!badge) return;
-
-  if (count > 0) {
-    badge.textContent = count;
-    badge.style.display = "inline-block";
-  } else {
-    badge.style.display = "none";
-  }
-}
   
   // Call it once on page load:
-updateCartCount();
 loadHeaderFooter(); 
 
