@@ -7,5 +7,3 @@ cart.init();
 
 
 loadHeaderFooter(); 
-
-
