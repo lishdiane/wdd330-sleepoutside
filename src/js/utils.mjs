@@ -40,12 +40,11 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 export function renderWithTemplate(
   template,
   parentElement,
-  data,
   callback
 ) {
   parentElement.innerHTML = template;
   if (callback) {
-    callback(data);
+    callback();
   }
 }
 
@@ -58,10 +57,52 @@ export async function loadTemplate(path) {
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const headerElement = document.querySelector("#main-header");
-  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(headerTemplate, headerElement, updateCartCount);
 
   const footerTemplate = await loadTemplate("../partials/footer.html");
   const footerElement = document.querySelector("#footer");
-  renderWithTemplate(footerTemplate, footerElement);
+  renderWithTemplate(footerTemplate, footerElement, updateCartCount);
 
+}
+
+
+//----Cart Subscript----//
+
+// Retrieve cart contents from localStorage
+function getCartContents() {
+  const cart = localStorage.getItem("so-cart");
+  return cart ? JSON.parse(cart) : [];
+}
+
+// Update the number shown on the cart icon
+function updateCartCount() {
+  const cartItems = getCartContents();
+  const cartLink = document.querySelector(".cart-link");
+
+  if (!cartLink) return;
+
+  // Check if the badge already exists
+  let badge = cartLink.querySelector(".cart-count-badge");
+
+  if (!badge) {
+    // Create the badge if it doesn't exist
+    badge = document.createElement("span");
+    badge.classList.add("cart-count-badge");
+    cartLink.appendChild(badge);
+  }
+
+  // Reduce item quantities
+    const quantity = cartItems.reduce((pv, item) => {
+      return pv + item.quantity;
+    }, 0);
+
+  // Update the count
+  badge.textContent = quantity;
+
+  // Optional: Hide badge if cart is empty
+  if (cartItems.length === 0) {
+    badge.style.display = "none";
+  } else {
+    badge.style.display = "inline-block";
+  }
 }
