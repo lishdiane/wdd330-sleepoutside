@@ -1,4 +1,4 @@
-import { getParam, loadHeaderFooter } from "./utils.mjs";
+import { getParam } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
@@ -21,7 +21,7 @@ console.log("Button data-id:", addToCartBtn.dataset.id);
 function addProductToCart(product) {
   // Example implementation - you should replace this with your real cart logic
   console.log("Product added to cart:", product);
-  alert(`Added "${product.Name}" to cart!`);
+  alert(`Added "${product.name}" to cart!`);
 }
 
 // Handler for Add to Cart button click
@@ -43,13 +43,25 @@ async function addToCartHandler(e) {
   }
 
   addProductToCart(product);
-  loadHeaderFooter()
 }
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
 
-  
-  // Call it once on page load:
-loadHeaderFooter(); 
+function updateCartCount() {
+  const cartItems = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const count = cartItems.length;
 
+  const badge = document.querySelector(".cart-count-badge");
+  if (!badge) return;
+
+  if (count > 0) {
+    badge.textContent = count;
+    badge.style.display = "inline-block";
+  } else {
+    badge.style.display = "none";
+  }
+}
+
+// Call it once on page load:
+updateCartCount();
