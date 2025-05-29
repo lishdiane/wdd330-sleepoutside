@@ -117,6 +117,44 @@ p {
   text-align: center;
 }
 
+/* home page newsletter form */
+
+#newsletter form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  width: 70%;
+  align-items: center;
+  padding: 1rem 0;
+  background-color: rgb(240, 240, 240);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.377);
+}
+
+#newsletter label {
+  width: 70%;
+  padding-bottom: 0.5rem;
+}
+
+#newsletter input {
+  display: block;
+  height: 33px;
+  width: 100%;
+}
+
+.required {
+  color: red;
+}
+
+/* newsletter thank you page */
+.thankyou-page {
+  padding: 2rem;
+}
+.thankyou-page h2,
+#thankyou-string {
+  text-align: center;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -366,17 +404,17 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
-.product-detail {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+  .product-detail {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 
-.product-detail img {
-  width: 100%;
-  max-width: 250px;
-  margin: 0 auto;
-}
+  .product-detail img {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (min-width: 600px) {

@@ -2,8 +2,6 @@ import { getParam, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
-
-
 // Initialize data source and get productId from URL
 const dataSource = new ProductData("tents");
 const productId = getParam("product");
@@ -50,6 +48,7 @@ async function addToCartHandler(e) {
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
+
   
   // Call it once on page load:
 loadHeaderFooter(); 
