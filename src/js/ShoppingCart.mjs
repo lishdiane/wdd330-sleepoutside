@@ -35,9 +35,9 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
 
   if (cartItems.length > 0) {
-    // Filter invalid items
+    // Filter invalid items.
     const validItems = cartItems.filter(
-      (item) => item && (item.Name || item.Image),
+      (item) => item && (item.Name || item.Image)
     );
     if (validItems.length === 0) {
       document.querySelector(".product-list").innerHTML =
@@ -46,20 +46,37 @@ function renderCartContents() {
       return;
     }
 
+    // Render cart items.
     const htmlItems = validItems.map(cartItemTemplate);
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
     document.querySelector(".cart-footer").style.display = "block";
 
+    // Calculate and display total.
     let total = 0;
     for (const item of validItems) {
       const quantity = item.quantity || 1;
       total += (Number(item.FinalPrice) || 0) * quantity;
     }
-    document.querySelector(".cart-total").textContent =
-      `Total: $${total.toFixed(2)}`;
+
+    // Update the cart total element.
+    const cartTotalEl = document.querySelector(".cart-total");
+    cartTotalEl.textContent = `Total: $${total.toFixed(2)}`;
+
+    // Insert the Checkout button below the total (but before the page footer).
+    // Adjust this markup and styling as needed.
+    const checkoutMarkup = `
+  <div class="checkout-container" style="text-align: center; margin-top: 1rem;">
+    <button class="checkout-btn" onclick="window.location.href='/checkout/index.html'">
+      Checkout
+    </button>
+  </div>
+`;
+
+    cartTotalEl.insertAdjacentHTML('afterend', checkoutMarkup);
   } else {
     document.querySelector(".product-list").innerHTML =
       "There are no items in your cart.";
     document.querySelector(".cart-footer").style.display = "none";
   }
 }
+

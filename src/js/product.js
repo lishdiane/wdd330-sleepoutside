@@ -43,13 +43,11 @@ async function addToCartHandler(e) {
   }
 
   addProductToCart(product);
-  loadHeaderFooter()
+  loadHeaderFooter();
 }
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
 
-  
-  // Call it once on page load:
-loadHeaderFooter(); 
-
+// Call it once on page load:
+loadHeaderFooter();

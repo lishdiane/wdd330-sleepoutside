@@ -142,6 +142,72 @@ p {
   width: 100%;
 }
 
+/* Checkout form container (similar to newsletter form) */
+#checkout form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  width: 80%;
+  padding: 1rem;
+  background-color: rgb(240, 240, 240);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.377);
+}
+
+/* Fieldset styling */
+#checkout form fieldset {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Legend styling */
+#checkout form legend {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Row layout for grouping inputs side-by-side */
+#checkout form .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* Input group for individual fields */
+#checkout form .input-group {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 0.5rem;
+}
+
+/* Label styling within checkout form */
+#checkout form label {
+  display: block;
+  padding-bottom: 0.3rem;
+}
+
+/* Input styling within checkout form */
+#checkout form input {
+  height: 33px;
+  width: 100%;
+}
+
+/* Order summary as a column layout */
+#checkout form .order-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#checkout form .order-summary p {
+  margin: 0.5rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* Required field indicator */
 .required {
   color: red;
 }

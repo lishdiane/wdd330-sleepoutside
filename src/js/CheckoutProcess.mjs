@@ -1,0 +1,85 @@
+// CheckoutProcess.mjs
+import { getLocalStorage } from './utils.mjs';
+
+export default class CheckoutProcess {
+    constructor(key, outputSelector) {
+        this.key = key; // localStorage key for the cart, e.g., 'so-cart'
+        this.outputSelector = outputSelector; // CSS selector for the container holding your order summary
+        this.list = [];
+        this.itemTotal = 0;   // Dollar value of all items
+        this.itemCount = 0;   // Total number of items (counts quantity)
+        this.tax = 0;
+        this.shipping = 0;
+        this.orderTotal = 0;
+    }
+
+    // Call this method when the page loads to get the cart summary.
+    init() {
+        this.list = getLocalStorage(this.key) || [];
+        this.calculateItemSubTotal();
+    }
+
+    // Calculate the subtotal for all items and update the item count.
+    calculateItemSubTotal() {
+        let subtotal = 0;
+        let count = 0;
+
+        // Loop through each item in the stored cart.
+        this.list.forEach(item => {
+            // Use the quantity if set, otherwise default to 1.
+            const quantity = item.quantity ? Number(item.quantity) : 1;
+            count += quantity;
+
+            // Using the "FinalPrice" property, defaulting to 0 if not provided.
+            const price = item.FinalPrice !== undefined ? Number(item.FinalPrice) : 0;
+            subtotal += price * quantity;
+        });
+
+        this.itemTotal = subtotal;
+        this.itemCount = count;
+
+        // Update the subtotal in the order summary
+        const subtotalElem = document.querySelector(
+            `${this.outputSelector} #order-subtotal`
+        );
+        if (subtotalElem) {
+            subtotalElem.innerText = `Subtotal: $${this.itemTotal.toFixed(2)}`;
+        }
+    }
+
+    // Calculate tax, shipping, and the overall order total.
+    // Tax: 6% of the subtotal.
+    // Shipping: $10 for the first item plus $2 for each additional item.
+    calculateOrderTotal() {
+        this.tax = this.itemTotal * 0.06;
+        this.shipping = this.itemCount > 0 ? 10 + ((this.itemCount - 1) * 2) : 0;
+        this.orderTotal = this.itemTotal + this.tax + this.shipping;
+
+        console.log("Tax computed: ", this.tax);
+        console.log("Shipping computed: ", this.shipping);
+        console.log("Order total computed: ", this.orderTotal);
+
+        this.displayOrderTotals();
+    }
+      
+
+    // Update the order summary elements on the checkout page.
+    displayOrderTotals() {
+        const summaryContainer = document.querySelector(this.outputSelector);
+        if (!summaryContainer) return;
+
+        const taxElem = summaryContainer.querySelector('#order-tax');
+        const shippingElem = summaryContainer.querySelector('#order-shipping');
+        const totalElem = summaryContainer.querySelector('#order-total');
+
+        if (taxElem) {
+            taxElem.innerText = `Tax: $${this.tax.toFixed(2)}`;
+        }
+        if (shippingElem) {
+            shippingElem.innerText = `Shipping: $${this.shipping.toFixed(2)}`;
+        }
+        if (totalElem) {
+            totalElem.innerText = `Order Total: $${this.orderTotal.toFixed(2)}`;
+        }
+    }
+}
