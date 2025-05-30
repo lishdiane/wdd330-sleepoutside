@@ -53,17 +53,21 @@ function renderCartContents() {
     return;
   }
 
-  const validItems = cartItems.filter(item => item && (item.Name || item.Image));
+  const validItems = cartItems.filter(
+    (item) => item && (item.Name || item.Image),
+  );
   if (validItems.length === 0) {
     productListEl.innerHTML = "There are no valid items in your cart.";
     cartFooterEl.style.display = "none";
     return;
   }
 
+  // Render cart items.
   const htmlItems = validItems.map(cartItemTemplate);
   productListEl.innerHTML = htmlItems.join("");
   cartFooterEl.style.display = "block";
 
+  // Calculate and display total
   let total = 0;
   for (const item of validItems) {
     const quantity = item.quantity || 1;
@@ -71,18 +75,32 @@ function renderCartContents() {
   }
   cartTotalEl.textContent = `Total: $${total.toFixed(2)}`;
 
+  // Insert the Checkout button below the total (but before the page footer).
+  // Adjust this markup and styling as needed.
+  const checkoutMarkup = `
+  <div class="checkout-container" style="text-align: center; margin-top: 1rem;">
+    <button class="checkout-btn" onclick="window.location.href='/checkout/index.html'">
+      Checkout
+    </button>
+  </div>
+`;
+
+  cartTotalEl.insertAdjacentHTML("afterend", checkoutMarkup);
+
   // Attach event listeners to remove buttons
-  document.querySelectorAll(".remove-item").forEach(button => {
+  document.querySelectorAll(".remove-item").forEach((button) => {
     button.addEventListener("click", (event) => {
       event.preventDefault();
       const id = button.dataset.id;
       console.log("Remove clicked for id:", id);
 
       let updatedCart = getLocalStorage("so-cart") || [];
-      
+
       // Make sure id comparison is string to string
-      updatedCart = updatedCart.filter(item => String(item.Id || item.id || item.Name) !== id);
-      
+      updatedCart = updatedCart.filter(
+        (item) => String(item.Id || item.id || item.Name) !== id,
+      );
+
       setLocalStorage("so-cart", updatedCart);
 
       // Re-render the cart after removal
