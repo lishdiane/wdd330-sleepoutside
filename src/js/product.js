@@ -45,19 +45,23 @@ async function addToCartHandler(e) {
   // Add product to cart
   addProductToCart(product);
 
-  // First, reload header/footer to update the count
+  // Reload header/footer to update cart count
   await loadHeaderFooter();
 
-  // Then, trigger the cart animation AFTER the header updates
+  // Trigger cart animation AFTER header reloads
+  const cartIcon = document.querySelector(".cart svg");
+  cartIcon.classList.add("animate");
+
   setTimeout(() => {
-    const cartIcon = document.querySelector(".cart svg");
-    cartIcon.classList.add("animate");
+    cartIcon.classList.remove("animate");
 
     setTimeout(() => {
-      cartIcon.classList.remove("animate");
-    }, 500); // Animation duration
-  }, 200); // Small delay to ensure header finishes reloading
+      alert(`Added "${product.Name}" to cart!`);
+    }, 250); // delay to ensure animation finishes first
+
+  }, 750); // Animation duration
 }
+
 
 
 
