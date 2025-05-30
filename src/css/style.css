@@ -387,6 +387,7 @@ footer {
   padding: 1em;
 }
 
+
 .carousel {
   position: relative;
   width: 100%;
@@ -422,6 +423,49 @@ footer {
 
 .carousel-thumb.selected {
   border-color: #0077cc;
+}
+
+
+.summary {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 10px;
+}
+
+#checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#checkout fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 16px;
+}
+
+#checkout button {
+  margin: 10px;
+}
+
+#checkout input {
+  height: 30px;
+  font-size: 20px;
+}
+
+.checkout {
+  text-decoration: none;
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  margin: auto;
+  display: block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  width: 200px;
 }
 
 @media screen and (min-width: 500px) {
