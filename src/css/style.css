@@ -332,6 +332,31 @@ button {
   border-radius: 5px;
 }
 
+/* Remove from cart feature */
+/* Remove button (X) in cart */
+.remove-item {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #c00;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.remove-item:hover {
+  color: #900;
+}
+
+/* Ensure cart items are relatively positioned */
+.cart-card {
+  position: relative;
+  padding-right: 2rem;
+  /* space for the X button */
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
