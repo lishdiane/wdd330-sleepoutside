@@ -15,41 +15,77 @@
     <header class="divider" id="main-header"></header>
 
     <main class="divider">
-      <section class="products">
+      <section id="checkout">
         <h2>Review & Place your Order</h2>
-      </section>
-      <form id="checkout" >
-        <fieldset>
-          <legend>Personal Information</legend>
-          <label for="fname">First Name:</label>
-          <input id="fname" type="text" name="fname" required>
-          <label for="lname">Last Name:</label>
-          <input id="lname" type="text" name="lname" required>
-          <label for="strAddress">Street Address</label>
-          <input id="strAddress" type="text" name="strAddress" required>
-          <label for="city">City:</label>
-          <input id="city" type="text" name="city" required>
-          <label for="state">State:</label>
-          <input id="state" type="text" name="state" required>
-          <label for="zip">Zip Code:</label>
-          <input id="zip" type="text" name="zip" required>
-        </fieldset>
-        <fieldset>
-          <legend>Payment</legend>
-          <label for="ccn">Credit Card Number:</label>
-          <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" 
-          autocomplete="cc-number" maxlength="19" 
-          placeholder="xxxx xxxx xxxx xxxx" required>
-          <label for="expdate">Expiration Date</label>
-          <input id="expdate" type="month" name="expdate" min="2025-01" max="2050-09" required>
-          <label for="scode">Security Code</label>
-          <input id="scode" type="text" name="scode" pattern="\d{3}" required>
-        </fieldset>
-        <div class="summary"></div>
-      <button type="submit">Checkout</button>
+        <form id="checkout-form">
+          <!-- Customer Information Fieldset -->
+          <fieldset>
+            <legend>Customer Information</legend>
+  
+            <!-- First Name and Last Name Row -->
+            <div class="row">
+              <div class="input-group">
+                <label for="first-name">First Name <span class="required">*</span></label>
+                <input type="text" id="first-name" name="first-name" required />
+              </div>
+              <div class="input-group">
+                <label for="last-name">Last Name <span class="required">*</span></label>
+                <input type="text" id="last-name" name="last-name" required />
+              </div>
+            </div>
+  
+            <!-- Street Address Row (Full Width) -->
+            <div class="row">
+              <div class="input-group full-width">
+                <label for="street-address">Street Address <span class="required">*</span></label>
+                <input type="text" id="street-address" name="street-address" required />
+              </div>
+            </div>
+  
+            <!-- City, State, and Zip Code Row (Divided into Thirds) -->
+            <div class="row">
+              <div class="input-group">
+                <label for="city">City <span class="required">*</span></label>
+                <input type="text" id="city" name="city" required />
+              </div>
+              <div class="input-group">
+                <label for="state">State <span class="required">*</span></label>
+                <input type="text" id="state" name="state" required />
+              </div>
+              <div class="input-group">
+                <label for="zip-code">Zip Code <span class="required">*</span></label>
+                <input type="text" id="zip-code" name="zip-code" required />
+              </div>
+            </div>
+          </fieldset>
+  
+  
+          <!-- Payment Information Fieldset -->
+          <fieldset>
+            <legend>Payment Information</legend>
+            <div class="row">
+              <div class="input-group">
+                <label for="credit-card">Credit Card Number <span class="required">*</span></label>
+                <input type="text" id="credit-card" name="credit-card" required pattern="[0-9]{15,16}" maxlength="16"
+                  placeholder="                XXXX" title="Credit card number must be 15-16 digits." />
+              </div>
+              <div class="input-group">
+                <label for="exp-date">Expiration Date <span class="required">*</span></label>
+                <input type="text" id="exp-date" name="exp-date" required maxlength="5" placeholder="MM/YY"
+                  pattern="(0[1-9]|1[0-2])\/\d{2}" title="Enter Month/Year format." />
+              </div>
+              <div class="input-group">
+                <label for="cvv">Security Code <span class="required">*</span></label>
+                <input type="text" id="cvv" name="cvv" required pattern="[0-9]{3,4}" maxlength="4" placeholder="XXX"
+                  title="CVV must be 3-4 digits." />
+              </div>
+            </div>
+          </fieldset>
+              <!-- Checkout Button -->
+        <button type="submit">Checkout</button>
       </form>
+    </section>
     </main>
-
     <footer id="footer"></footer>
   </body>
 </html>
