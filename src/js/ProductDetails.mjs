@@ -48,23 +48,60 @@ function productDetailsTemplate(product) {
   document.querySelector("h2").textContent = product.Brand.Name;
   document.querySelector("h3").textContent = product.NameWithoutBrand;
 
-  const productImageContainer = document.querySelector(".product-image-container"); // Get the wrapper
-  const productImage = document.getElementById("productImage");
-  productImage.src = product.Images.PrimaryLarge;
-  productImage.alt = product.NameWithoutBrand;
+  const carousel = document.getElementById("productCarousel");
+  const thumbnails = document.getElementById("carouselThumbnails");
 
+  // Clear existing content
+  carousel.innerHTML = "";
+  thumbnails.innerHTML = "";
+
+  // Combine Primary and ExtraImages
+  const allImages = [
+    product.Images.PrimaryLarge,
+    ...(product.Images?.ExtraImages?.map(img => img.Src) || [])
+  ];
+
+  // Render main carousel images
+  allImages.forEach((src, index) => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = product.NameWithoutBrand;
+    img.classList.add("carousel-image");
+    if (index === 0) img.classList.add("active");
+    carousel.appendChild(img);
+
+    // Render thumbnails
+    const thumb = document.createElement("img");
+    thumb.src = src;
+    thumb.alt = `Thumbnail ${index + 1}`;
+    thumb.classList.add("carousel-thumb");
+    if (index === 0) thumb.classList.add("selected");
+
+    thumb.addEventListener("click", () => {
+      // Toggle active image
+      document.querySelectorAll(".carousel-image").forEach((img, idx) => {
+        img.classList.toggle("active", idx === index);
+      });
+
+      // Toggle selected thumbnail
+      document.querySelectorAll(".carousel-thumb").forEach((thumb, idx) => {
+        thumb.classList.toggle("selected", idx === index);
+      });
+    });
+
+    thumbnails.appendChild(thumb);
+  });
+
+  // Other product details
   document.getElementById("productPrice").textContent = `$${product.FinalPrice.toFixed(2)}`;
   document.getElementById("productColor").textContent = product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
   document.getElementById("addToCart").dataset.id = product.Id;
-
-  // Calculate the discount percentage
   const discount = product.SuggestedRetailPrice > product.FinalPrice
     ? Math.round(((product.SuggestedRetailPrice - product.FinalPrice) / product.SuggestedRetailPrice) * 100)
     : null;
 
-  // Append discount badge inside the image container
-  if (discount !== null && productImageContainer) {
+  if (discount !== null && carousel) {
     const discountContainer = document.createElement("div");
     discountContainer.classList.add("discount-container-details");
 
@@ -72,6 +109,6 @@ function productDetailsTemplate(product) {
       <img src="/images/discount-star.png" alt="Discount Star" class="discount-image-details">
       <span class="discount-text-details">${discount}% OFF</span>`;
 
-    productImageContainer.appendChild(discountContainer);
+    carousel.appendChild(discountContainer);
   }
 }
