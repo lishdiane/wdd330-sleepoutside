@@ -18,20 +18,13 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
-      <div class="summary">
-        <div class="subtotal"></div>
-        <div class="tax"></div>
-        <div class="shipestimate"></div>
-        <div class="total"></div>
-      </div>
       <form id="checkout" >
         <fieldset>
+          <legend>Personal Information</legend>
           <label for="fname">First Name:</label>
           <input id="fname" type="text" name="fname" required>
           <label for="lname">Last Name:</label>
           <input id="lname" type="text" name="lname" required>
-      </fieldset>
-      <fieldset>
           <label for="strAddress">Street Address</label>
           <input id="strAddress" type="text" name="strAddress" required>
           <label for="city">City:</label>
@@ -40,8 +33,9 @@
           <input id="state" type="text" name="state" required>
           <label for="zip">Zip Code:</label>
           <input id="zip" type="text" name="zip" required>
-      </fieldset>
-      <fieldset>
+        </fieldset>
+        <fieldset>
+          <legend>Payment</legend>
           <label for="ccn">Credit Card Number:</label>
           <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" 
           autocomplete="cc-number" maxlength="19" 
@@ -50,7 +44,8 @@
           <input id="expdate" type="month" name="expdate" min="2025-01" max="2050-09" required>
           <label for="scode">Security Code</label>
           <input id="scode" type="text" name="scode" pattern="\d{3}" required>
-      </fieldset>
+        </fieldset>
+        <div class="summary"></div>
       <button type="submit">Checkout</button>
       </form>
     </main>
