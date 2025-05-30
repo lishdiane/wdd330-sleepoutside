@@ -387,6 +387,45 @@ footer {
   padding: 1em;
 }
 
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  overflow: hidden;
+}
+
+.carousel-image {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.carousel-image.active {
+  display: block;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.carousel-thumb {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+
+.carousel-thumb.selected {
+  border-color: #0077cc;
+}
+
+
 .summary {
   font-size: 20px;
   line-height: 1.5;
@@ -428,6 +467,7 @@ footer {
   cursor: pointer;
   width: 200px;
 }
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

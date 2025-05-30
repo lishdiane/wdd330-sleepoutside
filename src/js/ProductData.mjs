@@ -1,6 +1,15 @@
 // // const baseURL = import.meta.env.VITE_SERVER_URL
 // const baseURL = "https://wdd330-backend.onrender.com/"
 
+async function convertToJson(res) {
+    const data = await res.json();
+  if (res.ok) {
+    return data;
+  } else {
+    throw { name: "servicesError", message: data };
+  }
+}
+
 // function convertToJson(res) {
 //   if (res.ok) {
 //     return res.json();
@@ -8,6 +17,7 @@
 //     throw new Error("Bad Response");
 //   }
 // }
+
 
 // export default class ProductData {
 //   constructor() {
