@@ -1,6 +1,18 @@
 // CheckoutProcess.mjs
 import { getLocalStorage } from './utils.mjs';
 
+function formDataToJSON(formElement) {
+    const formData = new FormData(formElement);
+    const convertedJSON = {};
+
+    formData.forEach((value, key) => {
+        convertedJSON[key] = value;
+    });
+
+    return convertedJSON;
+}
+
+
 export default class CheckoutProcess {
     constructor(key, outputSelector) {
         this.key = key; // localStorage key for the cart, e.g., 'so-cart'
@@ -62,7 +74,6 @@ export default class CheckoutProcess {
             subtotalElem.innerHTML = `<span class="summary-item">Subtotal:</span> <span class="summary-value">$${this.itemTotal.toFixed(2)}</span>`;
         }
     }
-    
 
     // Calculate tax, shipping, and the overall order total.
     // Tax: 6% of the subtotal.
@@ -102,4 +113,68 @@ export default class CheckoutProcess {
         }
         
     }
+
+
+    packageItems(items) {
+        return items.map(item => ({
+            id: item.Id, 
+            name: item.Name, 
+            price: item.FinalPrice !== undefined ? Number(item.FinalPrice) : 0,
+            quantity: item.quantity ? Number(item.quantity) : 1
+        }));
+    }
+    
+    
+
+    async checkout(form) {
+        // Convert form data to JSON
+        const rawOrderData = formDataToJSON(form);
+
+        // Fix key names to match the server’s expectations
+        const orderData = {
+            orderDate: new Date().toISOString(),
+            fname: rawOrderData["first-name"],
+            lname: rawOrderData["last-name"],
+            street: rawOrderData["street-address"],
+            city: rawOrderData.city,
+            state: rawOrderData.state,
+            zip: rawOrderData["zip-code"],
+            cardNumber: rawOrderData["credit-card"],
+            expiration: rawOrderData["exp-date"],
+            code: rawOrderData.cvv, // Fixes "cvv" → "code"
+            items: this.packageItems(this.list),
+            orderTotal: this.orderTotal.toFixed(2),
+            shipping: this.shipping,
+            tax: this.tax.toFixed(2),
+        };
+
+        console.log("Prepared Order Data:", orderData);
+
+        // Set up fetch
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(orderData) // Convert object to JSON
+        };
+
+        try {
+            const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
+
+            if (!response.ok) {
+                throw new Error(`Server responded with ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log("Order submitted successfully:", result);
+            return result;
+
+        } catch (error) {
+            console.error("Error! submitting order:", error);
+        }
+    }
+    
+    
+        
 }

@@ -7,6 +7,21 @@ loadHeaderFooter();
 const checkout = new CheckoutProcess("so-cart", "#checkout");
 checkout.init();
 
+// 🚀 Add Checkout Submission Listener
+document.addEventListener("DOMContentLoaded", () => {
+    const checkoutForm = document.querySelector("#checkout-form");
+
+    if (checkoutForm) {
+        checkoutForm.addEventListener("submit", async (e) => {
+            e.preventDefault(); // Prevent default form submission
+
+            // Call checkout function and handle response
+            const orderResponse = await checkout.checkout(checkoutForm);
+            console.log("Order Server Response:", orderResponse);
+        });
+    }
+});
+
 // Expiration Date Auto-Formatting
 document.addEventListener("DOMContentLoaded", () => {
     const expDateInput = document.querySelector("#exp-date");
@@ -23,8 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-
 
 // Zip Code Event Listener for Order Total Calculation
 const zipInput = document.querySelector("#zip-code");
