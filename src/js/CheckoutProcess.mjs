@@ -84,10 +84,10 @@ export default class CheckoutProcess {
         order.items = packageItems(this.list);
 
         try {
-            const response = await services.checkout(order);
-            console.log(response);
+          const response = await services.checkout(order);
+          console.log(response);
         } catch (err) {
-            console.err("Checkout failed:", err);
+          console.log(err);
         }
     }
 }

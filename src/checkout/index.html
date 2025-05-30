@@ -18,7 +18,7 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
-      <form id="checkout" >
+      <form id="checkout" name="checkout">
         <fieldset>
           <legend>Personal Information</legend>
           <label for="fname">First Name:</label>
@@ -26,7 +26,7 @@
           <label for="lname">Last Name:</label>
           <input id="lname" type="text" name="lname" required>
           <label for="strAddress">Street Address</label>
-          <input id="strAddress" type="text" name="strAddress" required>
+          <input id="strAddress" type="text" name="street" required>
           <label for="city">City:</label>
           <input id="city" type="text" name="city" required>
           <label for="state">State:</label>
@@ -37,16 +37,16 @@
         <fieldset>
           <legend>Payment</legend>
           <label for="ccn">Credit Card Number:</label>
-          <input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" 
+          <input value="1234123412341234" id="ccn" type="tel" name="cardNumber" inputmode="numeric" pattern="[0-9\s]{13,19}" 
           autocomplete="cc-number" maxlength="19" 
           placeholder="xxxx xxxx xxxx xxxx" required>
           <label for="expdate">Expiration Date</label>
-          <input id="expdate" type="month" name="expdate" min="2025-01" max="2050-09" required>
+          <input id="expdate" type="month" name="expiration" min="2025-01" max="2050-09" required>
           <label for="scode">Security Code</label>
-          <input id="scode" type="text" name="scode" pattern="\d{3}" required>
+          <input value="123" id="scode" type="text" name="code" pattern="\d{3}" required>
         </fieldset>
         <div class="summary"></div>
-      <button type="submit">Checkout</button>
+      <button type="submit" id="checkout-submit">Checkout</button>
       </form>
     </main>
 
