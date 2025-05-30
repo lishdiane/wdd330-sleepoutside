@@ -472,6 +472,15 @@ button {
   grid-column: 3;
 }
 
+.cart svg {
+  transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.cart svg.animate {
+  transform: scale(2);
+  /* The final scale */
+}
+
 .hide {
   display: none;
 }

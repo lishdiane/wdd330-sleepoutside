@@ -21,7 +21,7 @@ console.log("Button data-id:", addToCartBtn.dataset.id);
 function addProductToCart(product) {
   // Example implementation - you should replace this with your real cart logic
   console.log("Product added to cart:", product);
-  alert(`Added "${product.Name}" to cart!`);
+  
 }
 
 // Handler for Add to Cart button click
@@ -42,9 +42,24 @@ async function addToCartHandler(e) {
     return;
   }
 
+  // Add product to cart
   addProductToCart(product);
-  loadHeaderFooter();
+
+  // First, reload header/footer to update the count
+  await loadHeaderFooter();
+
+  // Then, trigger the cart animation AFTER the header updates
+  setTimeout(() => {
+    const cartIcon = document.querySelector(".cart svg");
+    cartIcon.classList.add("animate");
+
+    setTimeout(() => {
+      cartIcon.classList.remove("animate");
+    }, 500); // Animation duration
+  }, 200); // Small delay to ensure header finishes reloading
 }
+
+
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
