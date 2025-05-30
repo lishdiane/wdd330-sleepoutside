@@ -1,5 +1,7 @@
 // CheckoutProcess.mjs
 import { getLocalStorage } from './utils.mjs';
+import { convertToJson } from "./ExternalServices.mjs";
+
 
 function formDataToJSON(formElement) {
     const formData = new FormData(formElement);
@@ -168,13 +170,24 @@ export default class CheckoutProcess {
 
             const result = await response.json();
             console.log("Order submitted successfully:", result);
-            return result;
+            
+            // Clear shopping cart from localStorage
+            localStorage.removeItem("so-cart");
+
+            // Reset the checkout form
+            document.forms["checkout-form"].reset();
+
+            // Redirect to success page
+            window.location.href = "success.html";
 
         } catch (error) {
-            console.error("Error! submitting order:", error);
+            console.error("Error submitting order:", error);
+
+            // Display user-facing error message in the checkout page
+            const errorElement = document.querySelector("#checkout-error");
+            if (errorElement) {
+                errorElement.textContent = "Processing error on your order. Please check your details and try again.";
+            }
         }
-    }
-    
-    
-        
+    } 
 }
