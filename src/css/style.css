@@ -190,21 +190,49 @@ p {
 
 /* Input styling within checkout form */
 #checkout form input {
-  height: 33px;
+  height: 44px;
   width: 100%;
+  font-size: 1rem;
 }
 
-/* Order summary as a column layout */
 #checkout form .order-summary {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Keeps the container centered */
+  width: 100%;
 }
 
 #checkout form .order-summary p {
-  margin: 0.5rem 0;
+  display: flex;
+  justify-content: flex-start;
+  /* Aligns items to the left */
+  align-items: center;
+  gap: 1rem;
+  /* Creates space between label and value */
+  font-size: 1.5rem;
+  /* Ensures readability */
+  margin-left: 3rem;
+  /* Moves everything slightly toward the center */
+}
+
+#exp-date {
   text-align: center;
-  width: 100%;
+  /* Centers text inside the input box */
+}
+
+#cvv {
+  text-align: center;
+  /* Centers text inside the input box */
+}
+
+.summary-item {
+  min-width: 175px;
+  /* Keeps labels aligned */
+  text-align: left;
+}
+
+.summary-value {
+  text-align: left;
 }
 
 /* Required field indicator */

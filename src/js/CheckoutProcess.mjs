@@ -17,6 +17,26 @@ export default class CheckoutProcess {
     init() {
         this.list = getLocalStorage(this.key) || [];
         this.calculateItemSubTotal();
+        this.setInitialSummaryValues();
+    }
+
+    setInitialSummaryValues() {
+        const summaryContainer = document.querySelector(this.outputSelector);
+        if (!summaryContainer) return;
+
+        const taxElem = summaryContainer.querySelector('#order-tax');
+        const shippingElem = summaryContainer.querySelector('#order-shipping');
+        const totalElem = summaryContainer.querySelector('#order-total');
+
+        if (taxElem) {
+            taxElem.innerHTML = `<span class="summary-item">Tax:</span> <span class="summary-value">$0.00</span>`;
+        }
+        if (shippingElem) {
+            shippingElem.innerHTML = `<span class="summary-item">Shipping:</span> <span class="summary-value">$0.00</span>`;
+        }
+        if (totalElem) {
+            totalElem.innerHTML = `<span class="summary-item">Order Total:</span> <span class="summary-value">$0.00</span>`;
+        }
     }
 
     // Calculate the subtotal for all items and update the item count.
@@ -26,11 +46,9 @@ export default class CheckoutProcess {
 
         // Loop through each item in the stored cart.
         this.list.forEach(item => {
-            // Use the quantity if set, otherwise default to 1.
             const quantity = item.quantity ? Number(item.quantity) : 1;
             count += quantity;
 
-            // Using the "FinalPrice" property, defaulting to 0 if not provided.
             const price = item.FinalPrice !== undefined ? Number(item.FinalPrice) : 0;
             subtotal += price * quantity;
         });
@@ -39,18 +57,19 @@ export default class CheckoutProcess {
         this.itemCount = count;
 
         // Update the subtotal in the order summary
-        const subtotalElem = document.querySelector(
-            `${this.outputSelector} #order-subtotal`
-        );
+        const subtotalElem = document.querySelector(`${this.outputSelector} #order-subtotal`);
         if (subtotalElem) {
-            subtotalElem.innerText = `Subtotal: $${this.itemTotal.toFixed(2)}`;
+            subtotalElem.innerHTML = `<span class="summary-item">Subtotal:</span> <span class="summary-value">$${this.itemTotal.toFixed(2)}</span>`;
         }
     }
+    
 
     // Calculate tax, shipping, and the overall order total.
     // Tax: 6% of the subtotal.
     // Shipping: $10 for the first item plus $2 for each additional item.
     calculateOrderTotal() {
+        console.log("calculateOrderTotal() method called.");
+          
         this.tax = this.itemTotal * 0.06;
         this.shipping = this.itemCount > 0 ? 10 + ((this.itemCount - 1) * 2) : 0;
         this.orderTotal = this.itemTotal + this.tax + this.shipping;
@@ -73,13 +92,14 @@ export default class CheckoutProcess {
         const totalElem = summaryContainer.querySelector('#order-total');
 
         if (taxElem) {
-            taxElem.innerText = `Tax: $${this.tax.toFixed(2)}`;
+            taxElem.innerHTML = `<span class="summary-item">Tax:</span> <span class="summary-value">$${this.tax.toFixed(2)}</span>`;
         }
         if (shippingElem) {
-            shippingElem.innerText = `Shipping: $${this.shipping.toFixed(2)}`;
+            shippingElem.innerHTML = `<span class="summary-item">Shipping:</span> <span class="summary-value">$${this.shipping.toFixed(2)}</span>`;
         }
         if (totalElem) {
-            totalElem.innerText = `Order Total: $${this.orderTotal.toFixed(2)}`;
+            totalElem.innerHTML = `<span class="summary-item">Order Total:</span> <span class="summary-value">$${this.orderTotal.toFixed(2)}</span>`;
         }
+        
     }
 }
