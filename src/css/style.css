@@ -242,7 +242,8 @@ p {
 }
 
 /* newsletter thank you page */
-.thankyou-page, .success{
+.thankyou-page,
+.success {
   padding: 2rem;
 }
 .thankyou-page h2,
@@ -514,7 +515,6 @@ footer {
   padding: 1em;
 }
 
-
 .carousel {
   position: relative;
   width: 100%;
@@ -551,7 +551,6 @@ footer {
 .carousel-thumb.selected {
   border-color: #0077cc;
 }
-
 
 .summary {
   font-size: 20px;
