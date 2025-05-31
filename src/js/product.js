@@ -6,8 +6,6 @@ import ProductDetails from "./ProductDetails.mjs";
 const dataSource = new ExternalServices("tents");
 const productId = getParam("product");
 
-console.log("Product ID:", productId);
-
 // Set up product details and initialize UI
 const productDetails = new ProductDetails(productId, dataSource);
 productDetails.init();
@@ -43,13 +41,11 @@ async function addToCartHandler(e) {
   }
 
   addProductToCart(product);
-  loadHeaderFooter()
+  loadHeaderFooter();
 }
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
 
-  
-  // Call it once on page load:
-loadHeaderFooter(); 
-
+// Call it once on page load:
+loadHeaderFooter();

@@ -1,6 +1,6 @@
 
 // CheckoutProcess.mjs
-import { getLocalStorage } from './utils.mjs';
+import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from './utils.mjs';
 
 function formDataToJSON(formElement) {
     const formData = new FormData(formElement);
@@ -163,17 +163,30 @@ export default class CheckoutProcess {
         try {
             const response = await fetch("https://wdd330-backend.onrender.com/checkout", options);
 
+            
             if (!response.ok) {
-                throw new Error(`Server responded with ${response.status}`);
+               
+                throw {name: "Server error", message: response.status}
             }
-
+            
             const result = await response.json();
+            
             console.log("Order submitted successfully:", result);
+
+            setLocalStorage("so-cart", []);
+            location.assign("/checkout/success.html");
             return result;
 
         } catch (error) {
-            console.error("Error! submitting order:", error);
+        
+            console.log(error)
+            removeAllAlerts();
+            for (let message in error) {
+                console.log(message)
+                alertMessage(`${error.name} ${error.message}`);
+            }
         }
+        
     }
 
 
