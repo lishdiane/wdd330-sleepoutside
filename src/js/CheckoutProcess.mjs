@@ -172,7 +172,11 @@ export default class CheckoutProcess {
             return result;
 
         } catch (error) {
-            console.error("Error! submitting order:", error);
+            removeAllAlerts();
+            for (let message in error.message) {
+                alertMessage(error.message[message]);
+            }
+            console.log(error);
         }
     }
 
