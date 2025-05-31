@@ -6,7 +6,6 @@ import ProductDetails from "./ProductDetails.mjs";
 const dataSource = new ExternalServices("tents");
 const productId = getParam("product");
 
-console.log("Product ID:", productId);
 
 // Set up product details and initialize UI
 const productDetails = new ProductDetails(productId, dataSource);
