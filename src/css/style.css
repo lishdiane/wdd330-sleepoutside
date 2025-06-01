@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -142,6 +142,101 @@ p {
   width: 100%;
 }
 
+/* Checkout form container (similar to newsletter form) */
+#checkout form {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  width: 80%;
+  padding: 1rem;
+  background-color: rgb(240, 240, 240);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.377);
+}
+
+/* Fieldset styling */
+#checkout form fieldset {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Legend styling */
+#checkout form legend {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Row layout for grouping inputs side-by-side */
+#checkout form .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* Input group for individual fields */
+#checkout form .input-group {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 0.5rem;
+}
+
+/* Label styling within checkout form */
+#checkout form label {
+  display: block;
+  padding-bottom: 0.3rem;
+}
+
+/* Input styling within checkout form */
+#checkout form input {
+  height: 44px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+#checkout form .order-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Keeps the container centered */
+  width: 100%;
+}
+
+#checkout form .order-summary p {
+  display: flex;
+  justify-content: flex-start;
+  /* Aligns items to the left */
+  align-items: center;
+  gap: 1rem;
+  /* Creates space between label and value */
+  font-size: 1.5rem;
+  /* Ensures readability */
+  margin-left: 3rem;
+  /* Moves everything slightly toward the center */
+}
+
+#exp-date {
+  text-align: center;
+  /* Centers text inside the input box */
+}
+
+#cvv {
+  text-align: center;
+  /* Centers text inside the input box */
+}
+
+.summary-item {
+  min-width: 175px;
+  /* Keeps labels aligned */
+  text-align: left;
+}
+
+.summary-value {
+  text-align: left;
+}
+
+/* Required field indicator */
 .required {
   color: red;
 }
@@ -150,6 +245,7 @@ p {
 .thankyou-page {
   padding: 2rem;
 }
+
 .thankyou-page h2,
 #thankyou-string {
   text-align: center;
@@ -263,6 +359,7 @@ button {
 #product-categories a:hover {
   color: brown;
 }
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -378,8 +475,43 @@ button {
   grid-column: 3;
 }
 
+.cart svg {
+  transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.cart svg.animate {
+  transform: scale(2);
+  /* The final scale */
+}
+
 .hide {
   display: none;
+}
+
+.success-page {
+  text-align: center;
+  padding: 1rem;
+}
+
+.success-page h2 {
+  font-size: 2.5rem;
+  padding: .5rem;
+}
+
+.success-page h3 {
+  font-size: 1.5rem;
+  padding: .5rem;
+}
+
+.success-page img {
+  border: 5px solid var(--primary-color);
+  margin: 1.25rem;
+}
+
+#checkout-error {
+  padding-top: .5rem;
+  font-size: 1rem;
+  text-align: center;
 }
 
 footer {

@@ -1,9 +1,9 @@
 import { getParam, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
 // Initialize data source and get productId from URL
-const dataSource = new ProductData("tents");
+const dataSource = new ExternalServices("tents");
 const productId = getParam("product");
 
 console.log("Product ID:", productId);
@@ -21,7 +21,7 @@ console.log("Button data-id:", addToCartBtn.dataset.id);
 function addProductToCart(product) {
   // Example implementation - you should replace this with your real cart logic
   console.log("Product added to cart:", product);
-  alert(`Added "${product.Name}" to cart!`);
+
 }
 
 // Handler for Add to Cart button click
@@ -42,14 +42,31 @@ async function addToCartHandler(e) {
     return;
   }
 
+  // Add product to cart
   addProductToCart(product);
-  loadHeaderFooter()
+
+  // Reload header/footer to update cart count
+  await loadHeaderFooter();
+
+  // Trigger cart animation AFTER header reloads
+  const cartIcon = document.querySelector(".cart svg");
+  cartIcon.classList.add("animate");
+
+  setTimeout(() => {
+    cartIcon.classList.remove("animate");
+
+    setTimeout(() => {
+      alert(`Added "${product.Name}" to cart!`);
+    }, 250); // delay to ensure animation finishes first
+
+  }, 750); // Animation duration
 }
+
+
+
 
 // Add event listener to Add to Cart button
 addToCartBtn.addEventListener("click", addToCartHandler);
 
-  
-  // Call it once on page load:
-loadHeaderFooter(); 
-
+// Call it once on page load:
+loadHeaderFooter();
