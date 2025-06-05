@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -142,110 +142,15 @@ p {
   width: 100%;
 }
 
-/* Checkout form container (similar to newsletter form) */
-#checkout form {
-  display: flex;
-  flex-direction: column;
-  margin: 2rem auto;
-  width: 80%;
-  padding: 1rem;
-  background-color: rgb(240, 240, 240);
-  border-radius: 0.5rem;
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.377);
-}
-
-/* Fieldset styling */
-#checkout form fieldset {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Legend styling */
-#checkout form legend {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-/* Row layout for grouping inputs side-by-side */
-#checkout form .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-/* Input group for individual fields */
-#checkout form .input-group {
-  flex: 1;
-  min-width: 200px;
-  margin: 0 0.5rem;
-}
-
-/* Label styling within checkout form */
-#checkout form label {
-  display: block;
-  padding-bottom: 0.3rem;
-}
-
-/* Input styling within checkout form */
-#checkout form input {
-  height: 44px;
-  width: 100%;
-  font-size: 1rem;
-}
-
-#checkout form .order-summary {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Keeps the container centered */
-  width: 100%;
-}
-
-#checkout form .order-summary p {
-  display: flex;
-  justify-content: flex-start;
-  /* Aligns items to the left */
-  align-items: center;
-  gap: 1rem;
-  /* Creates space between label and value */
-  font-size: 1.5rem;
-  /* Ensures readability */
-  margin-left: 3rem;
-  /* Moves everything slightly toward the center */
-}
-
-#exp-date {
-  text-align: center;
-  /* Centers text inside the input box */
-}
-
-#cvv {
-  text-align: center;
-  /* Centers text inside the input box */
-}
-
-.summary-item {
-  min-width: 175px;
-  /* Keeps labels aligned */
-  text-align: left;
-}
-
-.summary-value {
-  text-align: left;
-}
-
-/* Required field indicator */
-
 .required {
   color: red;
 }
 
 /* newsletter thank you page */
-.thankyou-page,
-.success {
+.thankyou-page {
   padding: 2rem;
 }
+
 .thankyou-page h2,
 #thankyou-string {
   text-align: center;
@@ -269,13 +174,6 @@ button {
 
 .divider {
   border-bottom: 2px solid var(--primary-color);
-}
-
-.alert {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(255, 194, 81);
 }
 
 /* End utility classes */
@@ -366,6 +264,7 @@ button {
 #product-categories a:hover {
   color: brown;
 }
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -433,31 +332,6 @@ button {
   text-align: center;
   padding: 4px 4px;
   border-radius: 5px;
-}
-
-/* Remove from cart feature */
-/* Remove button (X) in cart */
-.remove-item {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: transparent;
-  border: none;
-  color: #c00;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.remove-item:hover {
-  color: #900;
-}
-
-/* Ensure cart items are relatively positioned */
-.cart-card {
-  position: relative;
-  padding-right: 2rem;
-  /* space for the X button */
 }
 
 /* Start cart list card styles */
@@ -552,6 +426,7 @@ footer {
   border-color: #0077cc;
 }
 
+
 .summary {
   font-size: 20px;
   line-height: 1.5;
@@ -592,6 +467,23 @@ footer {
   font-size: var(--large-font);
   cursor: pointer;
   width: 200px;
+}
+
+.alert {
+  background-color: #f44336;
+  color: white;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 4px;
+  position: relative;
+}
+
+.alert span {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 500px) {
