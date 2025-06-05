@@ -594,6 +594,111 @@ footer {
   width: 200px;
 }
 
+/* ===== Comment Section Styles ===== */
+
+.product-comments {
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+  padding-top: 1rem;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-list .comment {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-list .comment>p {
+  margin-bottom: 0.5rem;
+}
+
+.comments-list .comment strong {
+  color: #333;
+}
+
+.comments-list .comment small {
+  color: #777;
+  margin-left: 0.5rem;
+}
+
+/* General comment buttons - remove transparent bg and set common styles */
+.comments-list .comment button {
+  margin-right: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.75rem;
+  /* smaller font */
+  padding: 0.25rem 0.5rem;
+  /* smaller padding */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  color: white;
+  /* text color */
+  background-color: transparent;
+  /* fallback, overridden below */
+}
+
+/* .comments-list .comment .comment-buttons {
+  display: flex;
+} */
+
+/* Edit button */
+.comments-list .comment button.edit-comment {
+  background-color: #007BFF;
+  /* Blue */
+}
+
+.comments-list .comment button.edit-comment:hover {
+  background-color: #0056b3;
+  /* Darker blue */
+  text-decoration: none;
+}
+
+/* Delete button */
+.comments-list .comment button.delete-comment {
+  background-color: #dc3545;
+  /* Red */
+}
+
+.comments-list .comment button.delete-comment:hover {
+  background-color: #a71d2a;
+  /* Darker red */
+  text-decoration: none;
+}
+
+#comment-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#comment-form input,
+#comment-form textarea {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+#comment-form button {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  background: #525b0f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#comment-form button:hover {
+  background: #218838;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
